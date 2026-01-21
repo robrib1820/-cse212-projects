@@ -3,7 +3,7 @@
 /// added and allows customers to be serviced.
 /// </summary>
 public class CustomerService {
-    public static void Run() {
+     public static void Run() {
         // Example code to see what's in the customer service queue:
         // var cs = new CustomerService(10);
         // Console.WriteLine(cs);
@@ -14,7 +14,13 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 1");
+        var service = new CustomerService(1);
+        service.AddNewCustomer();
+        service.ServeCustomer();
 
+        service = new CustomerService(2);
+        service.AddNewCustomer();
+        service.ServeCustomer();
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
@@ -23,7 +29,13 @@ public class CustomerService {
         // Scenario: 
         // Expected Result: 
         Console.WriteLine("Test 2");
-
+        service = new CustomerService(4);
+        service.AddNewCustomer();
+        service.AddNewCustomer();
+        Console.WriteLine($"Before serving customers: {service}");
+        service.ServeCustomer();
+        service.ServeCustomer();
+        Console.WriteLine($"After serving customers: {service}");
         // Defect(s) Found: 
 
         Console.WriteLine("=================");
