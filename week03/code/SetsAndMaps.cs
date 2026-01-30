@@ -22,7 +22,25 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        var set = new HashSet<string>(words);
+
+        var result = new List<string>();
+
+        foreach  (var word in words)
+        {
+            if (word[0] == word[1]) continue;
+            var reversed = $"{word[1]}{word[0]}";
+
+            if (set.Contains(reversed))
+            {
+                if (word.CompareTo(reversed) < 0)
+                {
+                    result.Add($"{word} & {reversed}");
+                }
+            }
+        }
+
+        return result.ToArray();
     }
 
     /// <summary>
@@ -43,6 +61,17 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            var degree = fields[3];
+
+            if(!degrees.ContainsKey(degree))
+            {
+                degrees[degree] = 1;
+            }
+            else
+            {
+                degrees[degree]++;
+            }
+
         }
 
         return degrees;
@@ -67,7 +96,47 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+
+        word1 = word1.ToLower().Replace(" ", "");
+        word2 = word2.ToLower().Replace(" ", "");
+
+        if (word1.Length != word2.Length)
+        {
+            return false;
+        }
+
+        var counts = new Dictionary<char, int>();
+
+        foreach (var c in word1)
+        {
+            if (!counts.ContainsKey(c))
+            {
+                counts[c] = 1;
+            }
+            else
+            {
+                counts[c]++;
+            }
+        }
+
+        foreach (var c in word2)
+        {
+            if (!counts.ContainsKey(c))
+            {
+                return false;
+            }
+            counts[c]--;
+        }
+
+        foreach (var v in counts.Values)
+        {
+            if(v !=0)
+            {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     /// <summary>
