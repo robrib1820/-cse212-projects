@@ -1,0 +1,14 @@
+Push 1 → [1]
+Push 2 → [2,1]
+Push 3 → [3,2,1]
+
+Pop → remove 3
+Pop → remove 2
+
+
+Enqueue 1 → [1]
+Enqueue 2 → [1,2]
+Enqueue 3 → [1,2,3]
+
+Dequeue → remove 1
+Dequeue → remove 2
